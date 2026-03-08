@@ -13,5 +13,8 @@
     "ejs": "^5.0.1",
     "express": "^5.2.1",
     "mongoose": "^9.2.4"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
   }
 }
