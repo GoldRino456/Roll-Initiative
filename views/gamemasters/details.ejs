@@ -22,8 +22,19 @@
         <p><%= gm.bio %></p>
     </section>
 
+    <section>
+        <form form action="/gamemasters/<%= gm._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+    </section>
+
     <footer>
-        <a href="/gamemasters">Go Back <--</a>
+        <div>
+            <a href="/gamemasters/<%= gm._id %>/edit">Edit Listing</a>
+        </div>
+        <div>
+            <a href="/gamemasters">Go Back <--</a>
+        </div>
     </footer>
 </body>
 </html>

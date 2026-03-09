@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Game Master</title>
+</head>
+<body>
+    <form action="/gamemasters/<%= gm._id %>?_method=PUT" method="POST">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="gm[name]" id="name" value="<%= gm.name %>">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="gm[email]" id="email" value="<%= gm.email %>">
+        </div>
+        <div>
+            <label for="game">Game of Choice</label>
+            <input type="text" name="gm[game]" id="game" value="<%= gm.game %>">
+        </div>
+        <div>
+            <label for="price">Price Per Session</label>
+            <input type="text" name="gm[price]" id="price" value="<%= gm.price %>">
+        </div>
+        <div>
+            <label for="bio">About You</label>
+            <input type="text" name="gm[bio]" id="bio" value="<%= gm.bio %>">
+        </div>
+        <div>
+            <label for="location">Location</label>
+            <input type="text" name="gm[location]" id="location" value="<%= gm.location %>">
+        </div>
+        <button>Update GM Listing</button>
+    </form>
+    <a href="/gamemasters/<%= gm._id %>">Go Back <--</a>
+</body>
+</html>
