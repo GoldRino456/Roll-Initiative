@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Game Master</title>
+</head>
+<body>
+    <form action="/gamemasters" method="POST">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="gm[name]" id="name">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="gm[email]" id="email">
+        </div>
+        <div>
+            <label for="game">Game of Choice</label>
+            <input type="text" name="gm[game]" id="game">
+        </div>
+        <div>
+            <label for="price">Price Per Session</label>
+            <input type="text" name="gm[price]" id="price">
+        </div>
+        <div>
+            <label for="bio">About You</label>
+            <input type="text" name="gm[bio]" id="bio">
+        </div>
+        <div>
+            <label for="location">Location</label>
+            <input type="text" name="gm[location]" id="location">
+        </div>
+        <button>Create GM Listing</button>
+    </form>
+    <a href="/gamemasters">Go Back <--</a>
+</body>
+</html>

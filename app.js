@@ -16,15 +16,31 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/testAdd', async (req, res) => {
-    const gm = new GameMaster({ name: "Bob" });
+app.get('/gamemasters', async (req, res) => {
+    const gamemasters = await GameMaster.find({});
+    res.render('gamemasters/index', { gamemasters });
+});
+
+app.get('/gamemasters/new', (req, res) => {
+    res.render('gamemasters/new');
+});
+
+app.post('/gamemasters', async (req, res) => {
+    const gm = new GameMaster(req.body.gm);
     await gm.save();
-    res.send(gm);
-})
+    res.redirect(`/gamemasters/${gm._id}`);
+});
+
+app.get('/gamemasters/:id', async (req, res) => {
+    const gm = await GameMaster.findById(req.params.id);
+    res.render('gamemasters/details', { gm });
+});
 
 app.listen(3000, () => {
     console.log('Serving on port 3000.');

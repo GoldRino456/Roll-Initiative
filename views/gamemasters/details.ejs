@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= gm.name %></title>
+</head>
+<body>
+    <h1><%= gm.name %></h1>
+    <h2>Located in: <%= gm.location %></h2>
+
+    <section>
+        <ul>
+            <li><%= gm.email %></li>
+            <li><%= gm.price %></li>
+            <li><%= gm.game %></li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>About Me</h3>
+        <p><%= gm.bio %></p>
+    </section>
+
+    <footer>
+        <a href="/gamemasters">Go Back <--</a>
+    </footer>
+</body>
+</html>
