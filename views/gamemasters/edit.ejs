@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Game Master</title>
-</head>
-<body>
+<% layout('layouts/boilerplate') %>
     <form action="/gamemasters/<%= gm._id %>?_method=PUT" method="POST">
         <div>
             <label for="name">Name</label>
@@ -34,5 +27,3 @@
         <button>Update GM Listing</button>
     </form>
     <a href="/gamemasters/<%= gm._id %>">Go Back <--</a>
-</body>
-</html>

@@ -23,9 +23,10 @@ const seedDB = async () => {
             name: `${randFirstName} ${randLastName}`,
             email: faker.internet.exampleEmail(randFirstName, randLastName),
             game: `${games[randGameIdx]}`,
-            price: faker.finance.amount(0, 100, 2, '$'),
+            price: Number.parseFloat(faker.finance.amount(0, 100, 2)),
             bio: faker.lorem.sentences(),
-            location: faker.address.cityName()
+            location: faker.address.cityName(),
+            image: `https://picsum.photos/400?random=${Math.random()}`
         })
 
         await gm.save();

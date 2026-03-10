@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= gm.name %></title>
-</head>
-<body>
+<% layout('layouts/boilerplate') %>
     <h1><%= gm.name %></h1>
     <h2>Located in: <%= gm.location %></h2>
+
+    <img src="<%= gm.image %>" alt="">
 
     <section>
         <ul>
@@ -36,5 +31,3 @@
             <a href="/gamemasters">Go Back <--</a>
         </div>
     </footer>
-</body>
-</html>

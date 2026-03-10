@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameMasters</title>
-</head>
-<body>
+<% layout('layouts/boilerplate') %>
     <h1>List of All Game Masters</h1>
     <div>
         <a href="/gamemasters/new">Create New +</a>
@@ -13,9 +6,9 @@
     <ul>
         <% for(let gm of gamemasters) { %>
             <li>
-                <a href="/gamemasters/<%= gm._id %>"><%= gm.name + " (" + gm.game + ")" %></a>
+                <a href="/gamemasters/<%= gm._id %>">
+                    <%= gm.name + " (" + gm.game + ")" %>
+                </a>
             </li>
-        <% } %>
+            <% } %>
     </ul>
-</body>
-</html>
