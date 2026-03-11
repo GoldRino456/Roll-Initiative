@@ -1,4 +1,34 @@
 <% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card">
+  <img src="<%= gm.image %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= gm.name %></h5>
+    <p class="card-text"><%= gm.bio %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Contact: <%= gm.email %></li>
+    <li class="list-group-item">$<%= gm.price %> per Session</li>
+    <li class="list-group-item">Game: <%= gm.game %></li>
+  </ul>
+  <div class="card-body">
+    <div class="row">
+        <div class="col-6">
+            <a href="/gamemasters/<%= gm._id %>/edit" class="btn btn-primary">Edit Listing</a>
+        </div>
+        <div class="col-6">
+            <form form action="/gamemasters/<%= gm._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+    </div>
+</div>
+
     <h1><%= gm.name %></h1>
     <h2>Located in: <%= gm.location %></h2>
 

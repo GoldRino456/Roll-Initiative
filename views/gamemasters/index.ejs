@@ -3,12 +3,18 @@
     <div>
         <a href="/gamemasters/new">Create New +</a>
     </div>
-    <ul>
-        <% for(let gm of gamemasters) { %>
-            <li>
-                <a href="/gamemasters/<%= gm._id %>">
-                    <%= gm.name + " (" + gm.game + ")" %>
-                </a>
-            </li>
-            <% } %>
-    </ul>
+    <% for(let gm of gamemasters) { %>
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-fluid" alt="" src="<%= gm.image %>">
+                </div>
+                <div class="col-md-8">
+                    <h5 class="card-title"><%= gm.name %></h5>
+                    <p><%= gm.game %> - <%= gm.price %> per Session</p>
+                    <p class="text-muted"><%= gm.location %></p>
+                    <a class="btn btn-primary" href="/gamemasters/<%= gm._id %>">See Details ></a>
+                </div>
+            </div>
+        </div>
+        <% } %>

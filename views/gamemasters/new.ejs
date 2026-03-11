@@ -1,29 +1,45 @@
 <% layout('layouts/boilerplate') %>
-    <form action="/gamemasters" method="POST">
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="gm[name]" id="name">
+    <div class="row">
+        <h1 class="text-center">New Game Master</h1>
+        <div class="col-6 offset-3">
+            <form action="/gamemasters" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="gm[name]" id="name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="gm[email]" id="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="game" class="form-label">Game of Choice</label>
+                    <input type="text" name="gm[game]" id="game" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price Per Session</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" name="gm[price]" id="price" class="form-control" placeholder="0.00"
+                        aria-describedby="price-label">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="bio" class="form-label">About You</label>
+                    <textarea type="text" name="gm[bio]" id="bio" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" name="gm[location]" id="location" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image URL</label>
+                    <input type="text" name="gm[image]" id="image" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Create GM Listing</button>
+                </div>
+            </form>
+            <a class="btn btn-danger" href="/gamemasters">Go Back <--</a>
         </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="gm[email]" id="email">
-        </div>
-        <div>
-            <label for="game">Game of Choice</label>
-            <input type="text" name="gm[game]" id="game">
-        </div>
-        <div>
-            <label for="price">Price Per Session</label>
-            <input type="text" name="gm[price]" id="price">
-        </div>
-        <div>
-            <label for="bio">About You</label>
-            <input type="text" name="gm[bio]" id="bio">
-        </div>
-        <div>
-            <label for="location">Location</label>
-            <input type="text" name="gm[location]" id="location">
-        </div>
-        <button>Create GM Listing</button>
-    </form>
-    <a href="/gamemasters">Go Back <--</a>
+    </div>
