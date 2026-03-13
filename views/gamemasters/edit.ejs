@@ -2,25 +2,25 @@
     <div class="row">
         <h1 class="text-center">New Game Master</h1>
         <div class="col-6 offset-3">
-            <form action="/gamemasters/<%= gm._id %>?_method=PUT" method="POST">
+            <form action="/gamemasters/<%= gm._id %>?_method=PUT" method="POST" novalidate class="validated-form">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" name="gm[name]" id="name" class="form-control" value="<%= gm.name %>">
+                    <input type="text" name="gm[name]" id="name" class="form-control" value="<%= gm.name %>" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" name="gm[email]" id="email" class="form-control" value="<%= gm.email %>">
+                    <input type="email" name="gm[email]" id="email" class="form-control" value="<%= gm.email %>" required>
                 </div>
                 <div class="mb-3">
                     <label for="game" class="form-label">Game of Choice</label>
-                    <input type="text" name="gm[game]" id="game" class="form-control" value="<%= gm.game %>">
+                    <input type="text" name="gm[game]" id="game" class="form-control" value="<%= gm.game %>" required>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price Per Session</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">$</span>
                         <input type="text" name="gm[price]" id="price" class="form-control" placeholder="0.00"
-                        aria-describedby="price-label" value="<%= gm.price %>">
+                        aria-describedby="price-label" value="<%= gm.price %>" required>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" name="gm[location]" id="location" class="form-control" value="<%= gm.location %>">
+                    <input type="text" name="gm[location]" id="location" class="form-control" value="<%= gm.location %>" required>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image URL</label>
