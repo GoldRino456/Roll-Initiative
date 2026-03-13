@@ -28,36 +28,3 @@
 </div>
     </div>
 </div>
-
-    <h1><%= gm.name %></h1>
-    <h2>Located in: <%= gm.location %></h2>
-
-    <img src="<%= gm.image %>" alt="">
-
-    <section>
-        <ul>
-            <li><%= gm.email %></li>
-            <li><%= gm.price %></li>
-            <li><%= gm.game %></li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>About Me</h3>
-        <p><%= gm.bio %></p>
-    </section>
-
-    <section>
-        <form form action="/gamemasters/<%= gm._id %>?_method=DELETE" method="POST">
-            <button>Delete</button>
-        </form>
-    </section>
-
-    <footer>
-        <div>
-            <a href="/gamemasters/<%= gm._id %>/edit">Edit Listing</a>
-        </div>
-        <div>
-            <a href="/gamemasters">Go Back <--</a>
-        </div>
-    </footer>
