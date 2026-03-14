@@ -7,6 +7,7 @@ const catchAsync = require('./utilities/CatchAsync');
 const ExpressError = require('./utilities/ExpressError');
 const methodOverride = require('method-override');
 const GameMaster = require('./models/game-master');
+const Review = require('./models/review');
 
 mongoose.connect('mongodb://127.0.0.1:27017/roll-initiative'); //Locally hosted db instance for now
 
@@ -77,6 +78,17 @@ app.delete('/gamemasters/:id', catchAsync(async (req, res) => {
     const gm = await GameMaster.findByIdAndDelete(id);
     console.log(`Deleted ${gm.name}`);
     res.redirect('/gamemasters');
+}));
+
+app.post('/gamemasters/:id/reviews', catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const { review } = req.body;
+    const gm = await GameMaster.findById(id);
+    const newReview = new Review(review);
+    gm.reviews.push(newReview);
+    await newReview.save();
+    await gm.save();
+    res.redirect(`/gamemasters/${gm._id}`);
 }));
 
 app.all(/(.*)/, (req, res, next) => {

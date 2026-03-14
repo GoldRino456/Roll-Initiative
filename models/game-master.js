@@ -8,7 +8,13 @@ const GameMasterSchema = new Schema({
     price: Number,
     bio: String,
     location: String,
-    image: String
+    image: String,
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 });
 
 module.exports = mongoose.model('GameMaster', GameMasterSchema);
