@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
-const { gameMasterSchema } = require('./schemas')
+const { gameMasterSchema, reviewSchema } = require('./schemas')
 const catchAsync = require('./utilities/CatchAsync');
 const ExpressError = require('./utilities/ExpressError');
 const methodOverride = require('method-override');
@@ -28,6 +28,18 @@ app.use(methodOverride("_method"));
 
 const validateGameMaster = (req, res, next) => {
     const { error } = gameMasterSchema.validate(req.body);
+    if(error) {
+        const message = error.details.map(el => el.message).join(',');
+        throw new ExpressError(message, 400);
+    }
+    else
+    {
+        next();
+    }
+};
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
     if(error) {
         const message = error.details.map(el => el.message).join(',');
         throw new ExpressError(message, 400);
@@ -80,7 +92,7 @@ app.delete('/gamemasters/:id', catchAsync(async (req, res) => {
     res.redirect('/gamemasters');
 }));
 
-app.post('/gamemasters/:id/reviews', catchAsync(async (req, res) => {
+app.post('/gamemasters/:id/reviews', validateReview, catchAsync(async (req, res) => {
     const { id } = req.params;
     const { review } = req.body;
     const gm = await GameMaster.findById(id);
