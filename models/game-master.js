@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Review = require('./review');
 const Schema = mongoose.Schema;
 
 const GameMasterSchema = new Schema({
@@ -15,6 +16,16 @@ const GameMasterSchema = new Schema({
             ref: 'Review'
         }
     ]
+});
+
+GameMasterSchema.post('findOneAndDelete', async function (doc) {
+    if(doc){
+        await Review.deleteMany({
+            _id: {
+                $in: doc.reviews
+            }
+        });
+    }
 });
 
 module.exports = mongoose.model('GameMaster', GameMasterSchema);

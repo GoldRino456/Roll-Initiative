@@ -70,7 +70,7 @@ app.post('/gamemasters', validateGameMaster, catchAsync(async (req, res) => {
 }));
 
 app.get('/gamemasters/:id', catchAsync(async (req, res) => {
-    const gm = await GameMaster.findById(req.params.id);
+    const gm = await GameMaster.findById(req.params.id).populate('reviews');
     res.render('gamemasters/details', { gm });
 }));
 
@@ -101,6 +101,13 @@ app.post('/gamemasters/:id/reviews', validateReview, catchAsync(async (req, res)
     await newReview.save();
     await gm.save();
     res.redirect(`/gamemasters/${gm._id}`);
+}));
+
+app.delete('/gamemasters/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    await GameMaster.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/gamemasters/${id}`);
 }));
 
 app.all(/(.*)/, (req, res, next) => {
