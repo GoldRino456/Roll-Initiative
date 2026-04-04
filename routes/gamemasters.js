@@ -4,6 +4,7 @@ const catchAsync = require('../utilities/CatchAsync');
 const ExpressError = require('../utilities/ExpressError');
 const GameMaster = require('../models/game-master');
 const { gameMasterSchema } = require('../schemas');
+const { isLoggedIn } = require('../middleware');
 
 const validateGameMaster = (req, res, next) => {
     const { error } = gameMasterSchema.validate(req.body);
@@ -22,11 +23,11 @@ router.get('/', catchAsync(async (req, res) => {
     res.render('gamemasters/index', { gamemasters });
 }));
 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('gamemasters/new');
 });
 
-router.post('/', validateGameMaster, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateGameMaster, catchAsync(async (req, res) => {
     const gm = new GameMaster(req.body.gm);
     await gm.save();
     req.flash('success', 'Successfully listed new Game Master.');
@@ -43,7 +44,7 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('gamemasters/details', { gm });
 }));
 
-router.get('/:id/edit', catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
     const gm = await GameMaster.findById(req.params.id);
     if(!gm){
         req.flash('error', 'No Game Master found.');
@@ -52,14 +53,14 @@ router.get('/:id/edit', catchAsync(async (req, res) => {
     res.render('gamemasters/edit', { gm });
 }));
 
-router.put('/:id', validateGameMaster, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, validateGameMaster, catchAsync(async (req, res) => {
     const { id } = req.params;
     const gm = await GameMaster.findByIdAndUpdate(id, { ...req.body.gm });
     req.flash('success', 'Successfully updated Game Master listing.');
     res.redirect(`/gamemasters/${gm._id}`);
 }));
 
-router.delete('/:id', catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     const gm = await GameMaster.findByIdAndDelete(id);
     console.log(`Deleted ${gm.name}`);
