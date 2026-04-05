@@ -3,15 +3,16 @@ const router = express.Router({ mergeParams: true });
 const catchAsync = require('../utilities/CatchAsync');
 const GameMaster = require('../models/game-master');
 const Review = require('../models/review');
-const { isLoggedIn, isAuthor, validateReview } = require('../middleware');
+const { isLoggedIn, isAuthor, validateReview, isReviewer } = require('../middleware');
 
 
 
-router.post('/', validateReview, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
     const { id } = req.params;
     const { review } = req.body;
     const gm = await GameMaster.findById(id);
     const newReview = new Review(review);
+    newReview.author = req.user._id;
     gm.reviews.push(newReview);
     await newReview.save();
     await gm.save();
@@ -19,7 +20,7 @@ router.post('/', validateReview, catchAsync(async (req, res) => {
     res.redirect(`/gamemasters/${gm._id}`);
 }));
 
-router.delete('/:reviewId', catchAsync(async (req, res) => {
+router.delete('/:reviewId', isLoggedIn, isReviewer, catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await GameMaster.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);

@@ -30,6 +30,17 @@ module.exports.isAuthor = async (req, res, next) => {
     next();
 };
 
+module.exports.isReviewer = async (req, res, next) => {
+    const { id, reviewId } = req.params;
+    var review = await Review.findById(reviewId);
+    if (!review.author.equals(req.user._id)) {
+        req.flash('error', 'You do not have permission to access that!');
+        return res.redirect(`/gamemasters/${id}`);
+    }
+
+    next();
+};
+
 module.exports.validateGameMaster = (req, res, next) => {
     const { error } = gameMasterSchema.validate(req.body);
     if(error) {

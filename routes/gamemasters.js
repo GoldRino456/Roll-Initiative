@@ -24,7 +24,12 @@ router.post('/', isLoggedIn, validateGameMaster, catchAsync(async (req, res) => 
 }));
 
 router.get('/:id', catchAsync(async (req, res) => {
-    const gm = await GameMaster.findById(req.params.id).populate('reviews').populate('author');
+    const gm = await GameMaster.findById(req.params.id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author');
     console.log(gm);
     if(!gm){
         req.flash('error', 'No Game Master found.');
