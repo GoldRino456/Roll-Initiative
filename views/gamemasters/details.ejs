@@ -18,7 +18,10 @@
           <li class="list-group-item">$<%= gm.price %> per Session</li>
           <li class="list-group-item">Game: <%= gm.game %>
           </li>
+          <li class="list-group-item text-muted">Submitted By: <%= gm.author.username %></li>
+          </li>
         </ul>
+        <% if(currentUser && gm.author.equals(currentUser._id)) {%> 
         <div class="card-body">
           <div class="row">
             <div class="col-6">
@@ -31,6 +34,7 @@
             </div>
           </div>
         </div>
+        <% } %> 
       </div>
     </div>
     <div class="col-6">

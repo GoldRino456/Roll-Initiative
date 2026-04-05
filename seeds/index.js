@@ -26,7 +26,8 @@ const seedDB = async () => {
             price: Number.parseFloat(faker.finance.amount(0, 100, 2)),
             bio: faker.lorem.sentences(),
             location: faker.address.cityName(),
-            image: `https://picsum.photos/400?random=${Math.random()}`
+            image: `https://picsum.photos/400?random=${Math.random()}`,
+            author: '69d14124733a7009dd130bcd' //Test Account Id
         })
 
         await gm.save();
