@@ -6,8 +6,14 @@ const { isLoggedIn, validateReview, isReviewer } = require('../middleware');
 
 
 
-router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReview));
+router.post('/', 
+    isLoggedIn, 
+    validateReview, 
+    catchAsync(reviews.createReview));
 
-router.delete('/:reviewId', isLoggedIn, isReviewer, catchAsync(reviews.deleteReview));
+router.delete('/:reviewId', 
+    isLoggedIn, 
+    isReviewer, 
+    catchAsync(reviews.deleteReview));
 
 module.exports = router;
