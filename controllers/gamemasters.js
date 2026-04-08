@@ -46,7 +46,7 @@ module.exports.displayEditForm = async (req, res) => {
 
 module.exports.editGamemaster = async (req, res) => {
     const { id } = req.params;
-    const gm = await GameMaster.findByIdAndUpdate(id, {...req.body.gm});
+    const gm = await GameMaster.findByIdAndUpdate(id, { ...req.body.gm });
     req.flash('success', 'Successfully updated Game Master listing.');
     res.redirect(`/gamemasters/${gm._id}`);
 };
